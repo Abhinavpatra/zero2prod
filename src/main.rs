@@ -1,4 +1,4 @@
-use actix_web::{get, web, App, HttpServer, Responder};
+use actix_web::{App, HttpServer, Responder, get, middleware::Logger, web};
 
 #[get("/hello/{name}")]
 async fn greet(name: web::Path<String>) -> impl Responder {
@@ -7,8 +7,21 @@ async fn greet(name: web::Path<String>) -> impl Responder {
 
 #[actix_web::main] // or #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    
+    if std::env::var_os("RUST_LOG").is_none(){
+        unsafe {
+            std::env::set_var("RUST_LOG", "actix_web=info");// this is unsafe in recent rust, so just mark it as unsafe and use it            
+        }
+    }
+    
+    dotenv::dotenv().ok();
+    env_logger::init();
+    
     HttpServer::new(|| {
-        App::new().service(greet)
+        App::new()
+            .wrap(Logger::default())
+            .service(greet)
+        
     })
     .bind(("127.0.0.1", 8080))?
     .run()
