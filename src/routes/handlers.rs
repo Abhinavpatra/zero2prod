@@ -1,1 +1,1 @@
-mod home_handler;
+pub mod home_handler;
