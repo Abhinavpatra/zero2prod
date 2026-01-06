@@ -64,8 +64,13 @@ src
         bar.rs
         foo.rs
     main.rs
+    utils.rs
+  
+
 Untill now compiler does not know about src/utils/foo.rs or bar.rs
 you have 2 options:
 
     add the file: src/utils/mod.rs
     add the file src/utils.rs (named exactly like the folder, without the extension)
+Then inside the <folder_name>.rs files, insert: `pub mod constant;` as the files if constant.rs exists inside that folder.
+
