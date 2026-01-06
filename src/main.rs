@@ -13,7 +13,6 @@ async fn main() -> std::io::Result<()> {
     if std::env::var_os("RUST_LOG").is_none(){
         unsafe {
             std::env::set_var("RUST_LOG", "actix_web=info");// this is unsafe in recent rust, so just mark it as unsafe and use it
-            
         }
     }
 
