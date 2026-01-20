@@ -17,3 +17,17 @@ fn set_address()-> String{
     env:: var
 }
 ```
+## || : closures
+|| { ... } is an anonymous function (closure).
+It takes zero arguments.
+It returns an App instance.
+So conceptually, this is equivalent to:
+```rust
+fn create_app() -> App {
+App::new()
+.wrap(Logger::default())
+.configure(routes::home_routes::config)
+}
+```
+
+And Actix uses this function to create a fresh App for each worker thread.

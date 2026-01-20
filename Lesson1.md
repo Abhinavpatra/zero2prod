@@ -67,7 +67,7 @@ src
     utils.rs
   
 
-Untill now compiler does not know about src/utils/foo.rs or bar.rs
+Until now compiler does not know about src/utils/foo.rs or bar.rs
 you have 2 options:
 
     add the file: src/utils/mod.rs
